@@ -103,6 +103,20 @@ if(process.env.NODE_ENV=='production'){
 app.use(session(sessionOption));
 
 
+// API 라우터 생성
+app.get('/api/userdata', (req, res)=>{
+    res.json({'data':'get데이터 발송완료'});
+});
+
+
+// API 라우터 생성
+app.post('/api/userdata', (req, res)=>{
+    res.json({'data':'post데이터 발송완료'});
+});
+
+
+
+
 // 분리된 라우터 가져오기
 const pageRouter = require('./routers/page');
 app.use('/', pageRouter);
