@@ -12,7 +12,7 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 //sql 생성 함수 모듈 가져오기
 const sqlFuncs = require('./sql');
-console.log(sqlFuncs);
+//console.log(sqlFuncs);
 
 
 

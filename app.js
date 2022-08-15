@@ -103,16 +103,21 @@ if(process.env.NODE_ENV=='production'){
 app.use(session(sessionOption));
 
 
+//API 함수 불러오기
+const apiFuncs = require('./routers/dbApi.js');
+
+
 // API 라우터 생성
 app.get('/api/userdata', (req, res)=>{
-    res.json({'data':'get데이터 발송완료'});
+    res.json([{'data':'get데이터 발송완료'},{'data2':'get데이터 발송완료2'}]);
 });
 
 
-// API 라우터 생성
-app.post('/api/userdata', (req, res)=>{
-    res.json({'data':'post데이터 발송완료'});
+app.post('/api/insertFeeling', (req, res)=>{
+    apiFuncs.insertFeeling(req.body);
+    res.end();  //post 후에 end또는 데이터를 보내줘야 axios.then으로 인식이 넘어감
 });
+
 
 
 
