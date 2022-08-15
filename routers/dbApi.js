@@ -16,7 +16,7 @@ const sqlFuncs = require('./sql');
 
 
 
-const insertFeeling = async (data)=>{
+exports.insertFeeling = async (data)=>{
     const {emotion, message} = data;
     console.log(emotion,message);
     try{
@@ -26,39 +26,16 @@ const insertFeeling = async (data)=>{
         console.log(err)
         return next(err);
     }
-
 }
 
-// const router = express.Router();
-
-
-
-// //회원가입 post router 생성
-// router.post('/', async(req, res, next)=>{
-//     const {emotion, message} = req.body;
-//     console.log(emotion,message)
-//     try{
-//         // let sql = sqlFuncs.isUserExist(email);
-//         // const [isExist, metadata] = await sequelize.query(sql);
-
-//         // if(isExist.length!=0){
-//         //     //이메일이 존재할경우
-//         //     return res.redirect('/join?error=exist');
-//         // }
-
-//         // const hash = await bcrypt.hash(password, 12);  // 비밀번호 해시화 (12레벨)
-//         // sql = sqlFuncs.insertMember(email, nick, hash); 
-//         // await sequelize.query(sql);
-        
-//         // return res.redirect('/');
-        
-//     }catch(err){
-//         console.log(err)
-//         return next(err);
-//     }
-
-// })
-
-module.exports = {
-    insertFeeling,
-};
+exports.getFeeling = async (data)=>{
+    try{
+        let sql = sqlFuncs.getFeeling();
+        const result = await sequelize.query(sql);
+        //console.log(result)
+        return result;
+    }catch(err){
+        console.log(err)
+        return next(err);
+    }
+}

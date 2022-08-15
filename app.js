@@ -107,15 +107,20 @@ app.use(session(sessionOption));
 const apiFuncs = require('./routers/dbApi.js');
 
 
+
 // API 라우터 생성
 app.get('/api/userdata', (req, res)=>{
     res.json([{'data':'get데이터 발송완료'},{'data2':'get데이터 발송완료2'}]);
 });
 
+app.post('/api/insertFeeling', async (req, res)=>{
+    const result = await apiFuncs.insertFeeling(req.body);
+    
+});
 
-app.post('/api/insertFeeling', (req, res)=>{
-    apiFuncs.insertFeeling(req.body);
-    res.end();  //post 후에 end또는 데이터를 보내줘야 axios.then으로 인식이 넘어감
+app.get('/api/getFeeling', async (req, res)=>{
+    const result = await apiFuncs.getFeeling(req.body);
+    res.json(result);
 });
 
 
