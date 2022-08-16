@@ -12,16 +12,14 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 //sql 생성 함수 모듈 가져오기
 const sqlFuncs = require('./sql');
-//console.log(sqlFuncs);
 
 
 
 exports.insertFeeling = async (data)=>{
     const {emotion, message} = data;
-    console.log(emotion,message);
     try{
         let sql = sqlFuncs.insertFeeling(emotion, message);
-        await sequelize.query(sql);
+        return await sequelize.query(sql);
     }catch(err){
         console.log(err)
         return next(err);
@@ -31,9 +29,8 @@ exports.insertFeeling = async (data)=>{
 exports.getFeeling = async (data)=>{
     try{
         let sql = sqlFuncs.getFeeling();
-        const result = await sequelize.query(sql);
-        //console.log(result)
-        return result;
+        //SELECT 할때 결과값이 2번 중복 나오면 쿼리타입을 설정해주면 된다.
+        return await sequelize.query(sql, {type:sequelize.QueryTypes.SELECT});  
     }catch(err){
         console.log(err)
         return next(err);

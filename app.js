@@ -115,7 +115,7 @@ app.get('/api/userdata', (req, res)=>{
 
 app.post('/api/insertFeeling', async (req, res)=>{
     const result = await apiFuncs.insertFeeling(req.body);
-    
+    res.end();  
 });
 
 app.get('/api/getFeeling', async (req, res)=>{

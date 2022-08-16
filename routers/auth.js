@@ -37,7 +37,6 @@ router.post('/join', async(req, res, next)=>{
         const hash = await bcrypt.hash(password, 12);  // 비밀번호 해시화 (12레벨)
         sql = sqlFuncs.insertMember(email, nick, hash); 
         await sequelize.query(sql);
-        
         return res.redirect('/');
         
     }catch(err){

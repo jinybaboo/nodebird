@@ -1,7 +1,7 @@
 
 // select 
 exports.isUserExist = (email) => `SELECT email FROM user where email = '${email}'`;
-exports.getFeeling = () => `SELECT * FROM FEELING`;
+exports.getFeeling = () => `SELECT * FROM FEELING `;
 
 
 //insert
